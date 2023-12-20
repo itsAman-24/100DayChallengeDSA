@@ -1,3 +1,5 @@
+// write a program to find the frequency of array element inside the array
+
 #include<bits/stdc++.h>
 using namespace std;
 
