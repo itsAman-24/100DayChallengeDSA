@@ -1,4 +1,4 @@
-// write a program to sort os,1s,2s in a Linked List (CODE STDIO)
+// write a program to sort os,1s,2s in a Linked List (CODE STDIO)  ***You can manipulate the data of nodes
 
 #include <bits/stdc++.h>
 using namespace std;
