@@ -59,7 +59,7 @@ node* mergeList(node* &n1head, node* &n2head) {
         
         //checking that the node from second list lies between first two nodes (WINDOW) from first linked list
 
-        if( (curr2 -> data >= curr1 -> data) && (curr2 -> data <= next1 -> data) ) {
+        if( (curr2 -> data >= curr1 -> data) && (next1 -> data >= curr2 -> data) ) {
 
             //placing node from second list in between first node
             curr1 -> next = curr2;
@@ -79,7 +79,7 @@ node* mergeList(node* &n1head, node* &n2head) {
             curr1 = next1;
             next1 = next1 -> next;
             
-            //edge case handling 
+            //edge case handling... ki aage jate time next1 NULL to nhi ho rha hai n ?
             if(next1 == NULL) {
                 curr1 -> next = curr2;
                 return n1head;
@@ -98,7 +98,7 @@ node* merge(node* &n1head, node* &n2head) {
         return n1head;
     }
 
-    if(n1head -> data <= n2head -> data) {
+    if(n2head -> data >= n1head -> data) {
         mergeList(n1head, n2head);
         return n1head;
     }
