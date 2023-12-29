@@ -41,7 +41,8 @@ void print(node *&head)
     }
 }
 
-node* mergeList(node* &n1head, node* &n2head) {
+//1st Function to merge two sorted linked list 
+node* mergeList1(node* &n1head, node* &n2head) {
 
     node* curr1 = n1head;
     node* next1 = curr1 -> next;
@@ -49,7 +50,7 @@ node* mergeList(node* &n1head, node* &n2head) {
     node* curr2 = n2head;
     node* next2 = curr2 -> next;
 
-    //if only node is there in first linked list,,,( that's why we are checking this case in the starting of loop )
+    //if only one node is there in first linked list,,,( that's why we are checking this case in the starting of loop )
     if(next1 -> next == NULL ) {
         curr1 -> next = curr2;
         return curr1;
@@ -59,11 +60,11 @@ node* mergeList(node* &n1head, node* &n2head) {
         
         //checking that the node from second list lies between first two nodes (WINDOW) from first linked list
 
-        if( (curr2 -> data >= curr1 -> data) && (next1 -> data >= curr2 -> data) ) {
+        if( (curr2 -> data >= curr1 -> data) && (curr2 -> data <= next1 -> data ) ) {
 
             //placing node from second list in between first node
             curr1 -> next = curr2;
-            next2 = curr2 -> next;
+            next2 = curr2 -> next; // keeping the track of further second linked list 
             curr2 -> next = next1;
 
             
@@ -88,6 +89,47 @@ node* mergeList(node* &n1head, node* &n2head) {
     }
 }
 
+//2nd Function to merge two sorted linked list 
+node* mergelist2(node* n1head, node* n2head) {
+    if(n1head == NULL) {
+        return n2head;
+    }
+    if(n2head == NULL) {
+        return n1head;
+    }
+
+    node* ans = new node(-1);
+    node* temp = ans;
+
+    while(n1head != NULL || n2head != NULL) {
+        if(n1head -> data <= n2head -> data) {
+            temp -> next = n1head;
+            temp = n1head;
+            n1head = n1head -> next;
+        }
+
+        else {
+            temp -> next = n2head;
+            temp = n2head;
+            n2head = n2head -> next;
+        }
+
+        while(n1head != NULL) {
+            temp -> next = n1head;
+            temp = n1head;
+            n1head = n1head -> next;
+        }
+
+        while(n2head != NULL) {
+            temp -> next = n2head;
+            temp = n2head;
+            n2head = n2head -> next;
+        }
+    }
+    ans = ans -> next;
+    return ans;
+}
+
 
 node* merge(node* &n1head, node* &n2head) {
     if(n1head == NULL ) {
@@ -99,12 +141,12 @@ node* merge(node* &n1head, node* &n2head) {
     }
 
     if(n2head -> data >= n1head -> data) {
-        mergeList(n1head, n2head);
+        mergeList1(n1head, n2head);
         return n1head;
     }
 
     else {
-        mergeList(n2head,n1head);
+        mergeList1(n2head,n1head);
         return n2head;
     }
 }
@@ -134,7 +176,7 @@ int main()
     print(n2head);
 
    
-    node* temp = merge(n1head, n2head);
+    node* temp = mergelist2(n1head, n2head);
 
     cout << endl << "Printing the linked list after merging in sorted order" << endl;
     
