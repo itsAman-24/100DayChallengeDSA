@@ -1,6 +1,9 @@
+//WAP to find the interaction between two arrays
+
 #include <bits/stdc++.h>
 using namespace std;
 
+//Bruteforce Approach
 vector<int> intersectInArray(vector<int> a , vector<int> b) {
     int n1 = a.size();
     int n2 = b.size();
@@ -26,22 +29,35 @@ vector<int> intersectInArray(vector<int> a , vector<int> b) {
 
     return ans;
 }
-vector<int> intersectInArrayFunction2(vector<int> a , vector<int> b) {
-    int n1 = a.size();
-    int n2 = b.size();
+
+//Optimized approach
+vector<int> findArrayIntersection(vector<int> &arr1, vector<int> &arr2)
+{
+    int n = arr1.size();
+    int m = arr2.size();
+
     int i = 0;
     int j = 0;
     vector<int> ans;
 
-    if(a[i] < b[j]) i++;
-    else j++;
+    while(i<n && j<m) {
+        if(arr1[i] < arr2[j]) {
+            i++;
+        }
 
-    if(a[i] == b[j]) {
-        ans.push_back(a[i]);
-        i++;
-        j++;
+        else if(arr2[j] < arr1[i]) {
+            j++;
+        }
+
+        else {
+            ans.push_back(arr1[i]);
+            i++;
+            j++;
+        }
     }
+
     return ans;
+
 }
 
 int main () {
@@ -62,7 +78,7 @@ int main () {
     b.push_back(11);
     b.push_back(14);
 
-    vector<int> c = intersectInArrayFunction2(a,b);
+    vector<int> c = findArrayIntersection(a,b);
     
     cout << "Intersections inside both the arraya are-> ";
     for(int i = 0; i < c.size(); i++) {
