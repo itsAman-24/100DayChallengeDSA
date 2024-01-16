@@ -55,7 +55,7 @@ int main() {
     deleteMiddle(myStack, myStack.size());
 
     // Display the modified stack
-    std::cout << "Stack after deleting middle element: ";
+    cout << "Stack after deleting middle element: ";
     while (!myStack.empty()) {
         cout << myStack.top() << " ";
         myStack.pop();
