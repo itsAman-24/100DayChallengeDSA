@@ -1,5 +1,5 @@
 /*
-// Definition for a Node.
+// Definition for a Node.*/
 class Node {
 public:
     int val;
@@ -12,7 +12,7 @@ public:
         random = NULL;
     }
 };
-*/
+
 
 class Solution {
 private:
