@@ -1,4 +1,4 @@
-//WAP to show the implementation of Queue using array
+// WAP to show the implementation of Queue using array
 
 #include <iostream>
 using namespace std;
